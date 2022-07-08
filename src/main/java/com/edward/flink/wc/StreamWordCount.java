@@ -2,6 +2,7 @@ package com.edward.flink.wc;
 
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
@@ -11,6 +12,13 @@ import org.apache.flink.util.Collector;
 public class StreamWordCount {
 
     public static void main(String[] args) throws Exception {
+
+
+        //获取参数  参数格式 --host xx.xx.xx.xx --port  8888
+        ParameterTool parameterTool = ParameterTool.fromArgs(args);
+        String host = parameterTool.get("host");
+        Integer port = parameterTool.getInt("port");
+
 
         //创建流的执行环境
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
