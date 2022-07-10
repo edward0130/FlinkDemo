@@ -37,7 +37,7 @@ public class StreamWordCount {
             for (String word : words) {
                 out.collect(Tuple2.of(word, 1L));
             }
-        }).returns(Types.TUPLE(Types.STRING, Types.LONG));
+        }).returns(Types.TUPLE(Types.STRING, Types.LONG)).slotSharingGroup("g1");
         //对数据进行分组
         KeyedStream<Tuple2<String, Long>, String> tuple2StringKeyedStream = tuple2SingleOutputStreamOperator.keyBy(data -> data.f0);
 
