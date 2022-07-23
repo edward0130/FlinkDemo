@@ -57,14 +57,20 @@ public class SourceDemo {
         properties.setProperty("auto.offset.reset","latest");
         DataStreamSource<String> stream6 = env.addSource(new FlinkKafkaConsumer<String>("clicks", new SimpleStringSchema(), properties));
 
+        //6.从自定义datasource获取数据
+
+        DataStreamSource stream7 = env.addSource(new CustomDataSource());
+
+
 //        stream1.print("1");
 //        stream2.print("2");
 //        stream3.print("3");
 //        stream4.print("4");
 //        stream5.print("5");
-        stream6.print("6");
+        //stream6.print("6");
+        stream7.print("7");
+
 
         env.execute();
-
     }
 }
